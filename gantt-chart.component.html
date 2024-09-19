@@ -1,0 +1,54 @@
+
+<section class="content">
+
+  <div class="content-block p-3" style="width: 100%;">
+    <div class="card mt-3">
+      <div class="col-12">
+        <h5>Gantt chart</h5>
+
+        <div class="project-cards">
+          <div class="project-card green-card">
+            <h6>Completed tasks</h6>
+            <p>{{ taskCountcomp }}</p>
+          </div>
+          <div class="project-card red-card">
+            <h6>Overdue tasks</h6>
+            <p>{{ taskCountover }}</p>
+          </div>
+          <div class="project-card blue-card">
+            <h6>Ongoing tasks</h6>
+            <p>{{ ongoingProjectsCount }}</p>
+          </div>
+          <div class="project-card yellow-card">
+            <h6>Completed projects</h6>
+            <p>{{ completedProjectsCount }}</p>
+          </div>
+          <div class="project-card purple-card">
+            <h6>Total projects</h6>
+            <p>{{ totalproject }}</p>
+          </div>
+          <div class="project-card turquoise-card">
+            <h6>Total tasks</h6>
+            <p>{{ totaltasks}}</p>
+          </div>
+        </div>
+        <div style="padding: 10px">
+          <div class="header-container">
+            <input type="text" (input)="onSearchChange($event)" placeholder="Search for projects / tasks...">
+            <select (change)="onFilterChange($event)">
+              <option *ngFor="let option of filterOptions" [value]="option">{{ option | titlecase }}</option>
+            </select>
+          </div>
+          <div id="gantt_here" ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<app-task-info-modal
+  [task]="selectedTask"
+  [project]="selectedProjet"
+  [showModal]="showModal"
+  (close)="closeModal()">
+</app-task-info-modal>
+</section>
